@@ -10,7 +10,7 @@ There is minimal styling to facilitate:
 - showing resulting string combinations
 - permitting guesses of word fragments
 
-## Live demo here
+## [Live demo here](https://h-yung.github.io/pangram/)
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
 
 
@@ -26,5 +26,7 @@ The goal is pangram, so we don't care about the requirement of one letter always
 
 But the pangram could be a word of any length, just at least 7 letters long based on the criteria.
 
-
 Current state: returns all possible combos of seven-letter strings from the given letter arrays.
+
+## Learnings
+Mostly documented inside the UI itself, but deliberately writing to follow OOP principles was a good refresher on closures.
