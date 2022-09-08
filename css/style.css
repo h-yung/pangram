@@ -1,0 +1,54 @@
+
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: salmon;
+    padding: 2rem;
+}
+
+section {
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 2rem;
+    border: 2px solid salmon;
+    background: rgba(255, 255, 255, 0.616);
+}
+
+input {
+    padding: 1rem 2rem;
+    border: none;
+    margin: 0.5rem 0;
+    display: block;
+}
+
+button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-width: 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: salmon;
+    background: darkslategray;
+    transition: all 0.4s ease-in 0s;
+    margin-bottom: 1rem;
+}
+
+button:is(:hover,:focus){
+    filter:brightness(1.5);
+}
+
+/* actions */
+.hide {
+    display: none;
+}
+
+/* emph */
+#numResults {
+    font-weight: bold;
+    text-transform: uppercase;
+}
