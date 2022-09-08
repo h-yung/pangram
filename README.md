@@ -45,9 +45,6 @@ TRY: Earlier insertion of filtering logic in the recursive function.
 ### Performance
 Throwing the resulting seven-lettered strings - ideally pared down with fragmentary guesses - at a dictionary is very unkind and poor use of an API, so that part is actually detached from the current filtering and string generation logic and requires a manual call from console. Also see previous point for caveat.
                   
-### UI issues
-Guess input does not reliably update filtered results.
-                  
 ### Intermediate approach
 A more manageable step to try would be to reduce the number of required letters and work with a smaller combination, to first verify the brute force approach can work.
 
@@ -55,3 +52,4 @@ A more manageable step to try would be to reduce the number of required letters 
 ## Learnings/To try
 - Mostly documented inside the UI itself, but deliberately writing to follow OOP principles was a good refresher on closures.
 - Create a minified version of the pangram (fewer letters) to cut down on the result array size.
+- fixed some UI/input issues
