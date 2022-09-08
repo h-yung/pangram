@@ -14,9 +14,11 @@ There is minimal styling to facilitate:
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
 
 ## Optimizations
+- Bug: Filter (exclusions array) not performing as required.
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
 - Clean up the comment history/detritus.
+
 
 ## Problem focus
 How do you narrow down on the many combinations possible with seven letters, where each letter appears at least once but the final word length is only known to be greater than or equal to seven?
@@ -39,8 +41,6 @@ Does current recursion create a complete set?
 e.g., Very rough logic: In English, the same letter is unlikely to be repeated consecutively three times. So we get the function <code>narrowDown(string)</code> that returns a Boolean. Both to reduce calls to API and to enable human /manual assessment: In theory, a recognizable word can be spotted within the first seven letters. 
 
 Artificial restriction: Pangrams that exceed a seven-letter count are currently out of scope of this program, a major flaw.
-
-TRY: Earlier insertion of filtering logic in the recursive function.
 
 ### Performance
 Throwing the resulting seven-lettered strings - ideally pared down with fragmentary guesses - at a dictionary is very unkind and poor use of an API, so that part is actually detached from the current filtering and string generation logic and requires a manual call from console. Also see previous point for caveat.

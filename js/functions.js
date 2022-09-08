@@ -3,6 +3,7 @@ class StringChecker {
     constructor(){
         this.letterArray = [];
         this.guessString = "";
+        this.toExclude = [];
         this.outputs = []; 
         this.filteredStrings = [];
     }
@@ -19,13 +20,27 @@ class StringChecker {
         const numResults = document.querySelector('#numResults');
         numResults.innerText = `${this.outputs.length} results!`;
 
-        if (this.outputs) document.querySelector('#guessContainer').classList.remove('hide');
+        if (this.outputs) {
+            document.querySelector('#guessContainer').classList.remove('hide');
+        }
+
     }
     setGuess(){
         console.log('setting a guess')
         this.guessString = guessBox.value; //a string value
+    }
+
+    setExclude(){
+        console.log('excluding...')
+        this.toExclude = remInput.value.split(',') //array to exclude
+    }
+
+    setAndRunFilter(){
+        this.setGuess();
+        this.setExclude();
+
         this.guess(); //this sets filteredStrings
-        
+
         //show this to me in UI
         const outputList = document.querySelector('#outputs');
         outputList.innerText = this.filteredStrings.join(', ')
@@ -65,12 +80,28 @@ class StringChecker {
     }
     guess(){
         //guessString is a fragment from viewing the letters to filter
-        if (this.guessString === "") {
-            console.log('no guess string')
+        if (!this.guessString && this.toExclude.length === 0) {
+            console.log('no guess string or exclusions')
             this.filteredStrings = this.outputs;
-        } else {
+        } else if (this.guessString && this.toExclude.length === 0){
             console.log('filtering against ' + this.guessString)
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
+
+        } else if (this.guessString && this.toExclude.length !== 0){
+            console.log(`filtering against ${this.guessString} and excluding all containing ${this.toExclude.join(', ')}`)
+
+            this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
+                .filter(string => {
+                    for (let ex of this.toExclude){
+                        return !(string.includes(ex))
+                    }
+                })
+        } else if (!this.guessString && this.toExclude.length !== 0){
+            this.filteredStrings = this.outputs.filter(string => {
+            for (let ex of this.toExclude){
+                return !(string.includes(ex))
+            }
+            })
         }
     }
 }
@@ -97,10 +128,11 @@ generateStringsButton.addEventListener('click', function(){stringChecker.setOutp
 const guessForm = document.querySelector('#guessTime')
 guessForm.addEventListener('submit', e=> e.preventDefault())
 
-const sendGuess = document.querySelector('#sendGuess')
-
 const guessBox = document.querySelector('#guessInput')
-sendGuess.addEventListener('click', function(){stringChecker.setGuess()})
+const remInput = document.querySelector('#remInput')
+
+const sendGuess = document.querySelector('#sendGuess')
+sendGuess.addEventListener('click', function(){stringChecker.setAndRunFilter()}) 
 
 
 //helpers
@@ -160,6 +192,7 @@ async function inDictionary(str){
 // example set:
 // [ 'o','n','i','r','d','l','a']
 //btw "ordinal" and "doornail" would be the pangrams
+// try these exclusions: ooi,aai,nr,nird,dla,dlr,rld,rlod,oido,rii,nra,rnr,iod
 
 
 //run on a completed store for array to test

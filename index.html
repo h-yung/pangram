@@ -35,8 +35,11 @@
                     <form id="guessTime">
                         <label>Make a partial guess
                             <input type="text" placeholder="type a fragment of a word to filter the outputs" id="guessInput">
-                            <button id="sendGuess">Submit guess</button>
                         </label>
+                        <label>Exclude strings containing these fragments (separated by commas)
+                            <input type="text" placeholder="Fragments to exclude" id="remInput">
+                        </label>
+                        <button id="sendGuess">Submit guess and exclusions</button>
                     </form>
                 </section>
             </div>
