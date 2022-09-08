@@ -66,6 +66,7 @@ class StringChecker {
         if (this.guessString === "") {
             this.filteredStrings = this.outputs;
         } else {
+            console.log('filtering')
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
         }
     }

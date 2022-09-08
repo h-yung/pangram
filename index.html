@@ -11,79 +11,64 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-        <h1>Pangram</h1>
-        <section id="explanation">
-            <ol>
-                <li>Provide the seven letters of the day in the inputs.</li>
-                <li>Once you do so, you can generate possible strings. View the outputs by clicking to expand the details/summary box (indicated by the triangles).</li>
-                <li>You can then guess in fragments of potential words to reduce the number of possible strings in the current outputs.</li>
-            </ol>
-        </section>
-        <section>
-            <form id="lettersOfDay">
-                <h2>Inputs</h2>
-                <label>Provide the seven letters of the day, without spaces
-                    <input type="text" id="letters" 
-                    pattern="^[A-Za-z]+$" title="seven-lettered string with no spaces or repeated letters">
-                    <button type="button" id="sendLetters">Submit letters</button>
-                </label>
-            </form>
-        </section>
-        <section id="guessContainer" class="hide">
-            <form id="guessTime">
-                <label>Make a partial guess
-                    <input type="text" placeholder="type a fragment of a word to filter the outputs" id="guessInput">
-                    <button id="sendGuess">Submit guess</button>
-                </label>
-            </form>
-        </section>
-        <section id="outputContainer" class="hide">
-            <h2>Current outputs</h2>
-            <button type="button" id="generateStrings">Generate strings</button>
-            <details>
-                <summary>
-                    <span id="numResults"></span>
-                    Open at your own peril after submitting the letters of the day. This may freeze the page!
-                </summary>
-                <p id="outputs"></p>
-            </details>
-        </section>
-        <section>
-            <details>
-                <summary>
-                    <h3>Approach notes</h3>
-                </summary>
-                <p>
-                    There are three main pieces approached with flaws, the biggest being performance: How do you narrow down on the many combinations possible with seven letters, where each letter appears at least once but the final word length is only known to be greater than or equal to seven?
-                </p>
-                <p>
-                    Absent a sophisticated language processing approach for the time being, brute force leads to the following:
-                </p>
+        <div class="top-level">
+            <section id="explanation" class="null">
+                <h1>Pangram</h1>
                 <ol>
-                    <li>
-                        Very rough logic: In English, the same letter is unlikely to be repeated consecutively three times. So we get the function <code>narrowDown(string) that returns a Boolean.</code>
-                    </li>
-                    <li>
-                        A pangram for a given letter set can easily exceed seven-letter length, but in theory, a recognizable word can be spotted within the first seven letters. Currently, this requires a human/manual assessment. But until the thousands of combinations can be reduced, this approach has been deprioritized. Implications: Pangrams that exceed a seven-letter count are currently out of scope of this program, a major flaw.
-                    </li>
-                    <li>
-                        The last step is currently throwing the resulting seven-lettered strings - ideally pared down with fragmentary guesses - at a dictionary. This is very unkind and poor use of an API, so that part is actually detached from the current filtering and string generation logic and requires a manual call from console. Also see previous point for caveat.
-                    </li>
+                    <li>Provide the seven letters of the day in the inputs.</li>
+                    <li>Once you do so, you can generate possible strings. View the outputs by clicking to expand the details/summary box (indicated by the triangles).</li>
+                    <li>You can then guess in fragments of potential words to reduce the number of possible strings in the current outputs.</li>
                 </ol>
-            </details>
-            
-            
+            </section>
+            <div class="tools">
+                <section>
+                    <form id="lettersOfDay">
+                        <h2>Inputs</h2>
+                        <label>Provide the seven letters of the day, without spaces
+                            <input type="text" id="letters" 
+                            pattern="^[A-Za-z]+$" title="seven-lettered string with no spaces or repeated letters">
+                            <button type="button" id="sendLetters">Submit letters</button>
+                        </label>
+                    </form>
+                </section>
+                <section id="guessContainer" class="hide">
+                    <form id="guessTime">
+                        <label>Make a partial guess
+                            <input type="text" placeholder="type a fragment of a word to filter the outputs" id="guessInput">
+                            <button id="sendGuess">Submit guess</button>
+                        </label>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <div class="top-level">
+            <section id="outputContainer" class="hide">
+                <h2>Current outputs</h2>
+                <button type="button" id="generateStrings">Generate strings</button>
+                <details>
+                    <summary>
+                        <span id="numResults"></span>
+                        Open at your own peril after submitting the letters of the day. This may freeze the page!
+                    </summary>
+                    <p id="outputs"></p>
+                </details>
+            </section>
+            <section class="max">
+                <h3>Approach notes</h3>
+                <h4>Context</h4>
+                <details>
+                    <summary>
+                        <span>Background and challenge</span>
+                    </summary>
+                    <p>The New York Times releases a new <a href="https://www.nytimes.com/puzzles/spelling-bee">Spelling Bee</a> round every day (turn over is probably based on Eastern Time Zone). With the seven given letters, players must put together valid English words. A valid word that uses all seven letters &mdash; repeated letters allowed &mdash; is considered a "pangram". Sometimes there is more than one pangram for a given set of letters.</p>
         
-        </section>
-        <section>
-            <h3>Background</h3>
-            <p>The New York Times releases a new <a href="https://www.nytimes.com/puzzles/spelling-bee">Spelling Bee</a> round every day (turn over is probably based on Eastern Time Zone). With the seven given letters, players must put together valid English words. A valid word that uses all seven letters &mdash; repeated letters allowed &mdash; is considered a "pangram". Sometimes there is more than one pangram for a given set of letters.</p>
-            <h3>The challenge</h3>
-            <p>Non-subscribers get very limited chances to guess the pangram &mdash; too many of the shorter words and you get locked out.</p>
-            <p>Naturally, if you want to get the pangram, you will conserve your guesses or try to make ones that seem incrementally useful. Sometimes you will figure it out the moment you see the letters, but that's not always the case.</p>
-            <h3>The solution?</h3>
-            <p>It is currently faster for an English-speaking human (sample size: 1) to find the pangram than the program as currently written, so the work is in progress.</p>
-        </section>
+                    <h5>The challenge</h5>
+                    <p>Non-subscribers get very limited chances to guess the pangram &mdash; too many of the shorter words and you get locked out.</p>
+                    <p>Naturally, if you want to get the pangram, you will conserve your guesses or try to make ones that seem incrementally useful. Sometimes you will figure it out the moment you see the letters, but that's not always the case.</p>
+                    <h5>A solution?</h5>
+                    <p>It is currently faster for an English-speaking human (sample size: 1) to find the pangram than the program as currently written, so the work is in progress.</p>
+                </details>  
+        </div>
         <section>
             <h2>Credits and apologies</h2>
             <p>A large debt and many apologies owed to <a href="https://github.com/meetDeveloper"><span>meetDeveloper</span></a>, the creator of the <a href="https://dictionaryapi.dev/">Free Dictionary API</a>, during the current development process.</p>

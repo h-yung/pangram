@@ -7,6 +7,14 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background: salmon;
     padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div.top-level {
+    display: flex;
+    width: 100%;
 }
 
 section {
@@ -15,6 +23,17 @@ section {
     border-radius: 2rem;
     border: 2px solid salmon;
     background: rgba(255, 255, 255, 0.616);
+}
+
+section.null {
+    padding: 2rem;
+    margin: 2rem auto;
+    border: 2px solid rgba(255, 255, 255, 0.616);
+    background: none;
+}
+
+section.max {
+    width: 100%;
 }
 
 input {
