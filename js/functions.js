@@ -1,9 +1,4 @@
-// given an array of 7 letters (case insensitive)
-// return an array of strings that are each valid English words created from the seven letters
-// the goal is pangram, so we don't care about the requirement of one letter always present, because all letters must be present. But the pangram could be a word of any length, just at least 7
-
-//current: return all possible combos of seven-letter strings from the given letter arrays.
-
+//defining stringchecking class
 class StringChecker {
     constructor(){
         this.letterArray = [];
