@@ -33,7 +33,7 @@ Current state: returns all possible combos of seven-letter strings from the give
 Problem breakdown below:
 
 ### Generating a comprehensive selection of potential strings
-Current recursion does not include complete set
+Current recursion does not create a complete set.
 
 ### Reducing initial outputs
 e.g., Very rough logic: In English, the same letter is unlikely to be repeated consecutively three times. So we get the function <code>narrowDown(string)</code> that returns a Boolean. Both to reduce calls to API and to enable human /manual assessment: In theory, a recognizable word can be spotted within the first seven letters. 
