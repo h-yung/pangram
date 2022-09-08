@@ -14,7 +14,6 @@ There is minimal styling to facilitate:
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
 
 ## Optimizations
-- Bug: Filter (exclusions array) not performing as required.
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
 - Clean up the comment history/detritus.
@@ -53,3 +52,4 @@ A more manageable step to try would be to reduce the number of required letters 
 - Mostly documented inside the UI itself, but deliberately writing to follow OOP principles was a good refresher on closures.
 - Create a minified version of the pangram (fewer letters) to cut down on the result array size.
 - fixed some UI/input issues
+- fixed exclusion filter - for loops are not the best for repeated true/false (don't exit with a `return` before it's done). Rewritten with array method `.some()`.

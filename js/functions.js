@@ -91,17 +91,9 @@ class StringChecker {
             console.log(`filtering against ${this.guessString} and excluding all containing ${this.toExclude.join(', ')}`)
 
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
-                .filter(string => {
-                    for (let ex of this.toExclude){
-                        return !(string.includes(ex))
-                    }
-                })
+                .filter(string => !(this.toExclude.some(ex => string.includes(ex))))
         } else if (!this.guessString && this.toExclude.length !== 0){
-            this.filteredStrings = this.outputs.filter(string => {
-            for (let ex of this.toExclude){
-                return !(string.includes(ex))
-            }
-            })
+            this.filteredStrings = this.outputs.filter(string => !(this.toExclude.some(ex => string.includes(ex))))
         }
     }
 }
