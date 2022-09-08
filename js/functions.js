@@ -23,7 +23,7 @@ class StringChecker {
     }
     setGuess(){
         console.log('setting a guess')
-        this.guessString = guessInput; //a string value
+        this.guessString = guessBox.value; //a string value
         this.guess(); //this sets filteredStrings
         
         //show this to me in UI
@@ -48,7 +48,9 @@ class StringChecker {
                 //for each letter in the letter array, create and add substring to the sub array. 
                 for (let m = 0; m < refArray.length; m++) {
                     let subString = `${arr[k]}${refArray[m]}`
-                    subArray.push(subString) 
+
+                    //earlier filtering point: 
+                    if (narrowDown(subString)) subArray.push(subString) 
                 }
             }
             arr = [...subArray] //letters might repeat so we can't eliminate anything blindly
@@ -58,15 +60,16 @@ class StringChecker {
             if (arr[0].length < length) {
                 return buildStrings(refArray, arr, subArray, length, ++index);
             }
-            return arr.filter(string => narrowDown(string))
+            return arr
         }
     }
     guess(){
         //guessString is a fragment from viewing the letters to filter
         if (this.guessString === "") {
+            console.log('no guess string')
             this.filteredStrings = this.outputs;
         } else {
-            console.log('filtering')
+            console.log('filtering against ' + this.guessString)
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
         }
     }
@@ -95,7 +98,8 @@ const guessForm = document.querySelector('#guessTime')
 guessForm.addEventListener('submit', e=> e.preventDefault())
 
 const sendGuess = document.querySelector('#sendGuess')
-const guessInput = document.querySelector('#guessInput').value //a string
+
+const guessBox = document.querySelector('#guessInput')
 sendGuess.addEventListener('click', function(){stringChecker.setGuess()})
 
 
@@ -155,7 +159,7 @@ async function inDictionary(str){
 
 // example set:
 // [ 'o','n','i','r','d','l','a']
-//btw "ordinal" is (one of) the pangram(s)
+//btw "ordinal" and "doornail" would be the pangrams
 
 
 //run on a completed store for array to test
