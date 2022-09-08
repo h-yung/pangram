@@ -40,6 +40,8 @@ e.g., Very rough logic: In English, the same letter is unlikely to be repeated c
 
 Artificial restriction: Pangrams that exceed a seven-letter count are currently out of scope of this program, a major flaw.
 
+TRY: Earlier insertion of filtering logic in the recursive function.
+
 ### Performance
 Throwing the resulting seven-lettered strings - ideally pared down with fragmentary guesses - at a dictionary is very unkind and poor use of an API, so that part is actually detached from the current filtering and string generation logic and requires a manual call from console. Also see previous point for caveat.
                   
