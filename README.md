@@ -17,7 +17,9 @@ There is minimal styling to facilitate:
 
 
 ## Optimizations
-- some bugs managing state between filtering, but potentially just because: no trailing commas and no spaces between exclusion fragments are permitted
+**Bugs/quirks**
+- Filter (exclusion): no trailing commas, no spaces between exclusion fragments are permitted, and must have at least one letter (something incorrect with the conditionals).
+
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
 - Clean up the comment history/detritus.
