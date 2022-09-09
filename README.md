@@ -9,12 +9,13 @@ There is minimal styling to facilitate:
 - submission of the day's seven letters
 - showing resulting string combinations
 - permitting guesses of word fragments
+- permitting exclusion of strings by array of fragments
 
 ## [Live demo here](https://h-yung.github.io/pangram/)
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
 
 ## Optimizations
-- some bugs managing state between filtering
+- some bugs managing state between filtering, but potentially just because: no trailing commas and no spaces between exclusion fragments are permitted
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
 - Clean up the comment history/detritus.
@@ -24,13 +25,12 @@ There is minimal styling to facilitate:
 How do you narrow down on the many combinations possible with seven letters, where each letter appears at least once but the final word length is only known to be greater than or equal to seven?
 Absent a sophisticated language processing approach for the time being, brute force leads to the following.
 
-Given an array of 7 letters (case insensitive), return an array of strings that are each valid English words created from the seven letters.
+Task:
+- Given an array of 7 letters (case insensitive), return an array of strings that are each valid English words created from the seven letters.
+- The goal is pangram, so we don't care about the requirement of one letter always present, because all letters must be present. 
+- But the pangram could be a word of any length, just at least 7 letters long based on the criteria.
 
-The goal is pangram, so we don't care about the requirement of one letter always present, because all letters must be present. 
-
-But the pangram could be a word of any length, just at least 7 letters long based on the criteria.
-
-Current state: returns all possible combos of seven-letter strings from the given letter arrays.
+Current status: returns all possible combos of seven-letter strings from the given letter arrays.
 
 Problem breakdown below:
 
@@ -53,4 +53,4 @@ A more manageable step to try would be to reduce the number of required letters 
 - Mostly documented inside the UI itself, but deliberately writing to follow OOP principles was a good refresher on closures.
 - Create a minified version of the pangram (fewer letters) to cut down on the result array size.
 - fixed some UI/input issues
-- fixed exclusion filter - for loops are not the best for repeated true/false (don't exit with a `return` before it's done). Rewritten with array method `.some()`.
+- rewrote exclusion filter with array method `.some()`.
