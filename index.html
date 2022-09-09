@@ -31,17 +31,6 @@
                         </label>
                     </form>
                 </section>
-                <section id="guessContainer" class="hide">
-                    <form id="guessTime">
-                        <label>Make a partial guess
-                            <input type="text" placeholder="type a fragment of a word to filter the outputs" id="guessInput">
-                        </label>
-                        <label>Exclude strings containing these fragments (separated by commas)
-                            <input type="text" placeholder="Fragments to exclude" id="remInput">
-                        </label>
-                        <button id="sendGuess">Submit guess and exclusions</button>
-                    </form>
-                </section>
             </div>
         </div>
         <div class="top-level">
@@ -55,6 +44,17 @@
                     </summary>
                     <p id="outputs"></p>
                 </details>
+            </section>
+            <section id="guessContainer" class="hide">
+                <form id="guessTime">
+                    <label>Make a partial guess
+                        <input type="text" placeholder="type a fragment of a word to filter the outputs" id="guessInput">
+                    </label>
+                    <label>Exclude strings containing these fragments (separated by commas)
+                        <input type="text" placeholder="Fragments to exclude" id="remInput">
+                    </label>
+                    <button id="sendGuess">Submit guess and exclusions</button>
+                </form>
             </section>
             <section class="max">
                 <h3>Approach notes</h3>
