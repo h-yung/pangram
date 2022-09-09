@@ -1,5 +1,6 @@
 # pangram
-Or, approaching the [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) pangram hunt from a different angle. 
+Or, approaching the [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) pangram hunt with different tools.
+[Resources like this](https://www.sbsolver.com/) exist but we aren't aiming for hints.
 
 This vaguely follows OOP model by encapsulating some logic in a class while leaving the helper functions outside. 
 
@@ -12,7 +13,8 @@ There is minimal styling to facilitate:
 - permitting exclusion of strings by array of fragments
 
 ## [Live demo here](https://h-yung.github.io/pangram/)
-![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
+![pangram-screen_v2](https://user-images.githubusercontent.com/102257735/189261995-8512eb40-eac2-4eea-b9f8-3b3391953551.png)
+
 
 ## Optimizations
 - some bugs managing state between filtering, but potentially just because: no trailing commas and no spaces between exclusion fragments are permitted
