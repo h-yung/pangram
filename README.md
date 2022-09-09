@@ -15,7 +15,7 @@ There is minimal styling to facilitate:
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
 
 ## Optimizations
-- some bugs managing state between filtering
+- some bugs managing state between filtering, but potentially just because: no trailing commas and no spaces between exclusion fragments are permitted
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
 - Clean up the comment history/detritus.
