@@ -32,7 +32,9 @@ class StringChecker {
 
     setExclude(){
         console.log('excluding...')
-        this.toExclude = remInput.value.split(',') //array to exclude
+        if (this.toExclude !== ""){ //otherwise, empty strings are converted into arrays with empty string at [0] and counted as having a length of 1.
+            this.toExclude = remInput.value.split(',') //array to exclude
+        }
     }
 
     setAndRunFilter(){
@@ -81,8 +83,8 @@ class StringChecker {
     guess(){
         //guessString is a fragment from viewing the letters to filter
         if (!this.guessString) {
-                if (this.toExclude[0] === "") {
-                    console.log('no guess string or exclusions')
+                if (!this.toExclude[0] === "") {
+                    console.log('no guess string or exclusions') //this never runs...
                     this.filteredStrings = this.outputs;
                 } else if (this.toExclude[0] !== ""){
                     this.filteredStrings = this.outputs.filter(string => !(this.toExclude.some(ex => string.includes(ex))))

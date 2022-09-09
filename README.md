@@ -18,7 +18,7 @@ There is minimal styling to facilitate:
 
 ## Optimizations
 **Bugs/quirks**
-- Filter (exclusion): no trailing commas, no spaces between exclusion fragments are permitted, and must have at least one letter (something incorrect with the conditionals).
+- Filter (exclusion): no trailing commas, no spaces between exclusion fragments are permitted. Because of the .split(',') operations, the length of the exclusion array is considered 1 at minimum, so the conditional currently works around that with `.toExclude[0]=== ""`.
 
 - Functionality: Further narrowing down set of results to only then call the dictionary API (currently deliberately detached from UI options).
 - Take another pass with a less brute-force angle.
