@@ -9,6 +9,7 @@ There is minimal styling to facilitate:
 - submission of the day's seven letters
 - showing resulting string combinations
 - permitting guesses of word fragments
+- permitting exclusion of strings by array of fragments
 
 ## [Live demo here](https://h-yung.github.io/pangram/)
 ![pangram-screen_v1](https://user-images.githubusercontent.com/102257735/189031676-69d86153-d8bc-4fe6-be44-a14a88d71822.png)
