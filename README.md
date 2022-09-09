@@ -53,4 +53,4 @@ A more manageable step to try would be to reduce the number of required letters 
 - Mostly documented inside the UI itself, but deliberately writing to follow OOP principles was a good refresher on closures.
 - Create a minified version of the pangram (fewer letters) to cut down on the result array size.
 - fixed some UI/input issues
-- fixed exclusion filter - for loops are not the best for repeated true/false (don't exit with a `return` before it's done). Rewritten with array method `.some()`.
+- rewrote exclusion filter with array method `.some()`.
