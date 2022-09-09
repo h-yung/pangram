@@ -25,13 +25,12 @@ There is minimal styling to facilitate:
 How do you narrow down on the many combinations possible with seven letters, where each letter appears at least once but the final word length is only known to be greater than or equal to seven?
 Absent a sophisticated language processing approach for the time being, brute force leads to the following.
 
-Given an array of 7 letters (case insensitive), return an array of strings that are each valid English words created from the seven letters.
+Task:
+- Given an array of 7 letters (case insensitive), return an array of strings that are each valid English words created from the seven letters.
+- The goal is pangram, so we don't care about the requirement of one letter always present, because all letters must be present. 
+- But the pangram could be a word of any length, just at least 7 letters long based on the criteria.
 
-The goal is pangram, so we don't care about the requirement of one letter always present, because all letters must be present. 
-
-But the pangram could be a word of any length, just at least 7 letters long based on the criteria.
-
-Current state: returns all possible combos of seven-letter strings from the given letter arrays.
+Current status: returns all possible combos of seven-letter strings from the given letter arrays.
 
 Problem breakdown below:
 
