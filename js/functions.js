@@ -80,21 +80,22 @@ class StringChecker {
     }
     guess(){
         //guessString is a fragment from viewing the letters to filter
-        if (!this.guessString && this.toExclude.length === 0) {
-            console.log('no guess string or exclusions')
-            this.filteredStrings = this.outputs;
-        } else if (this.guessString && this.toExclude.length === 0){
+        if (!this.guessString) {
+                if (this.toExclude[0] === "") {
+                    console.log('no guess string or exclusions')
+                    this.filteredStrings = this.outputs;
+                } else if (this.toExclude[0] !== ""){
+                    this.filteredStrings = this.outputs.filter(string => !(this.toExclude.some(ex => string.includes(ex))))
+                }
+        } else if (this.guessString && this.toExclude[0] === ""){
             console.log('filtering against ' + this.guessString)
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
-
-        } else if (this.guessString && this.toExclude.length !== 0){
+        } else if (this.guessString && this.toExclude[0] !== ""){
             console.log(`filtering against ${this.guessString} and excluding all containing ${this.toExclude.join(', ')}`)
 
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
-                .filter(string => !(this.toExclude.some(ex => string.includes(ex))))
-        } else if (!this.guessString && this.toExclude.length !== 0){
-            this.filteredStrings = this.outputs.filter(string => !(this.toExclude.some(ex => string.includes(ex))))
-        }
+                                                .filter(string => !(this.toExclude.some(ex => string.includes(ex))))
+        } 
     }
 }
 
