@@ -39,6 +39,8 @@ Problem breakdown below:
 ### Generating a comprehensive selection of potential strings
 Does current recursion create a complete set?
 
+Can results size be reduced in earlier stages for better performance/reduce unnecessary iterations?
+
 ### Reducing initial outputs
 e.g., Very rough logic: In English, the same letter is unlikely to be repeated consecutively three times. So we get the function <code>narrowDown(string)</code> that returns a Boolean. Both to reduce calls to API and to enable human /manual assessment: In theory, a recognizable word can be spotted within the first seven letters. 
 
