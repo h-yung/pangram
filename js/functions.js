@@ -26,14 +26,23 @@ class StringChecker {
 
     }
     setGuess(){
+        // clear previous
+        this.guessString = "";
+
         console.log('setting a guess')
-        this.guessString = guessBox.value; //a string value
+        if (guessBox.value !== "") this.guessString = guessBox.value; //a string value
+        else console.log('no guesses made')
     }
 
     setExclude(){
+        //clear previous
+        this.toExclude = [];
+
         console.log('excluding...')
-        if (this.toExclude !== ""){ //otherwise, empty strings are converted into arrays with empty string at [0] and counted as having a length of 1.
+        if (remInput.value !== ""){ //otherwise, empty strings are converted into arrays with empty string at [0] and counted as having a length of 1.
             this.toExclude = remInput.value.split(',') //array to exclude
+        } else {
+            console.log('no exclusions added')
         }
     }
 
@@ -82,14 +91,15 @@ class StringChecker {
     }
     guess(){
         //guessString is a fragment from viewing the letters to filter
-        if (!this.guessString) {
-                if (!this.toExclude[0] === "") {
+        console.log(`guess is ${this.guessString} and exclusions are ${this.toExclude}`)
+        if (this.guessString==="") {
+                if (!this.toExclude === []) {
                     console.log('no guess string or exclusions') //this never runs...
                     this.filteredStrings = this.outputs;
                 } else if (this.toExclude[0] !== ""){
                     this.filteredStrings = this.outputs.filter(string => !(this.toExclude.some(ex => string.includes(ex))))
                 }
-        } else if (this.guessString && this.toExclude[0] === ""){
+        } else if (this.guessString && this.toExclude === []){
             console.log('filtering against ' + this.guessString)
             this.filteredStrings = this.outputs.filter(string => string.includes(this.guessString))
         } else if (this.guessString && this.toExclude[0] !== ""){
