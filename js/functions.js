@@ -23,8 +23,8 @@ class StringChecker {
         if (this.outputs) {
             document.querySelector('#guessContainer').classList.remove('hide');
         }
-
     }
+
     setGuess(){
         // clear previous
         this.guessString = "";
@@ -91,7 +91,6 @@ class StringChecker {
     }
     guess(){
         //guessString is a fragment from viewing the letters to filter
-        console.log(`guess is ${this.guessString} and exclusions are ${this.toExclude}`)
         if (this.guessString==="") {
                 if (!this.toExclude === []) {
                     console.log('no guess string or exclusions') //this never runs...
@@ -160,12 +159,26 @@ function validateInput(str){
 //cut down on bloat before chucking at a dictionary, to be expanded
 function narrowDown(string){ 
     let arrCheck = string.split('')
+
+    // combos that are unlikely in valid English words - could likely be added more programmatically
+    // with partial credits to https://www.quora.com/What-consonant-combinations-do-not-appear-in-English-words - apparently looping over MacOS X. Some letters are also less likely to show up in Spelling Bee but included anyway.
+    let unlikely = [
+        'aa', 'uu', 'jj', 'kk','qq','hh','xx','yy',
+        'tk',
+        'tlt','ctc','tct','tzt', 'mlm','nln','dld','czc',
+        'dll','tll','ztt','nll',
+        'aoi','uoi',
+        'eei','aee','eea','oou','aoo',
+        'bx', 'cj', 'cv', 'cx', 'dx', 'fq', 'fx', 'gq', 'gx', 'hx', 'jc', 'jf', 'jg', 'jq', 'js', 'jv', 'jx', 'jz', 'kq', 'kx', 'mx', 'px', 'pz', 'qb', 'qc', 'qd', 'qf', 'qg', 'qh', 'qj', 'qk', 'ql', 'qm', 'qn', 'qp', 'qs', 'qt', 'qv', 'qx', 'qz', 'sx', 'vb', 'vf', 'vh', 'vj', 'vm', 'vp', 'vq', 'vt', 'vx', 'xj', 'xx', 'zj', 'zq', 'zx'
+    ]
+    
     for (let i=0; i< arrCheck.length; i++){
         // if same letter is repeated three times in a row, likely a invalid word
         let rep = arrCheck[i].repeat(3) 
-        if (string.includes(rep)) return false
+        if (string.includes(rep)) return false;
     }
-    return true
+
+    return true && !unlikely.some(ex => string.includes(ex))
 }
 
 
@@ -192,105 +205,17 @@ async function inDictionary(str){
 // free api: https://dictionaryapi.dev/
 
 
-
-
 // example set:
 // [ 'o','n','i','r','d','l','a']
 //btw "ordinal" and "doornail" would be the pangrams
 // try these exclusions: ooi,aai,nr,nird,dla,dlr,rld,rlod,oido,rii,nra,rnr,iod
 
 
-//run on a completed store for array to test
-/*
-function guess(guessString){
-    //guessString is a fragment from viewing the letters to filter
-    return store.filter(string => string.includes(guessString))
-}
-*/
-
-/*
-let store = [];
-
-function get7LetterStrings(letterArray) {
-    let wordLength = 7 //where we will stop as minimum
-    let bucket = []; 
-    let subBucket = [];
-
-    bucket = [...letterArray] //we will reassign values
-    return buildStrings(bucket, subBucket, wordLength, 1);
-
-    // helper function called recursively as needed 
-    function buildStrings(arr, subArray, length, index) {
-      //for each value in the bucket, passed as "arr"
-      for (let k = 0; k < arr.length; k++) {
-        
-        //go through each letter in the letter array
-        for (let m = 0; m < letterArray.length; m++) {
-          //create and add this substring to the sub array. 
-          let subString = `${arr[k]}${letterArray[m]}`
-          subArray.push(subString) // subBucket after the first loop =['oo']
-        }
-        //end of first loop: subBucket = ['oo', 'on', 'oi', 'or', 'od','ol', 'oa']
-      }
-      //end of second loop: subBucket = ['oo'....'no'....'io'....'ro'....'do'....'lo'....'ao'.....]  
-  
-      arr = [...subArray] //now bucket contains all the values of the subBucket up to this point. letters might repeat so we can't eliminate anything blindly
-
-      subArray.length = 0; //reset the subbucket
-  
-      //check word length of substrings contained by the bucket
-      if (arr[0].length < length) {
-        // if not the right length, call buildStrings again
-        return buildStrings(arr, subArray, length, ++index);
-      }
-      //if the right length, return the array of strings filtered for valid words only (here, uses the mock and does not filter)
-
-      store = [...arr.filter(string => isValidWord(string))] 
-      //becomes a side effect
-      return 
-    }
-  }
-  */
-
-
-
 /*==================THE VERSION WITH https://dictionaryapi.dev/ =============*/
 //with annotations
 /*
 function get7LetterStrings(letterArray) {
-    let wordLength = 7 //where we will stop as minimum
-    let bucket = []; 
-    let subBucket = [];
-
-    bucket = [...letterArray] //we will reassign values
-    return buildStrings(bucket, subBucket, wordLength, 1);
-
-    // helper function called recursively as needed 
-    function buildStrings(arr, subArray, length, index) {
-      //for each value in the bucket, passed as "arr"
-      for (let k = 0; k < arr.length; k++) {
-        
-        //go through each letter in the letter array
-        for (let m = 0; m < letterArray.length; m++) {
-          //create and add this substring to the sub array. 
-          let subString = `${arr[k]}${letterArray[m]}`
-          subArray.push(subString) // subBucket after the first loop =['oo']
-        }
-        //end of first loop: subBucket = ['oo', 'on', 'oi', 'or', 'od','ol', 'oa']
-      }
-      //end of second loop: subBucket = ['oo'....'no'....'io'....'ro'....'do'....'lo'....'ao'.....]  
-  
-      arr = [...subArray] //now bucket contains all the values of the subBucket up to this point. letters might repeat so we can't eliminate anything blindly
-
-      subArray.length = 0; //reset the subbucket
-  
-      //check word length of substrings contained by the bucket
-      if (arr[0].length < length) {
-        // if not the right length, call buildStrings again
-        return buildStrings(arr, subArray, length, ++index);
-      }
-      //if the right length, return the array of strings filtered for valid words only (here, uses the mock and does not filter)
-
+   //...
       return arr.filter(string => narrowDown(string)) //reduce req number slightly
                 .filter(string => inDictionary(string))
     }
