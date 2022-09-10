@@ -163,7 +163,7 @@ function narrowDown(string){
     // combos that are unlikely in valid English words - could likely be added more programmatically
     // with partial credits to https://www.quora.com/What-consonant-combinations-do-not-appear-in-English-words - apparently looping over MacOS X. Some letters are also less likely to show up in Spelling Bee but included anyway.
     let unlikely = [
-        'aa', 'uu', 'jj', 'kk','qq','hh','xx','yy',
+        'aa', 'uu', 'jj', 'kk','qq','yy',
         'tk',
         'tlt','ctc','tct','tzt', 'mlm','nln','dld','czc',
         'dll','tll','ztt','nll',
